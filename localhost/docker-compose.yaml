@@ -1,0 +1,109 @@
+services:
+  caddy:
+    image: caddy:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy/data:/data
+      - ./caddy/config:/config
+    user: ${UID}:${GID}
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /data/caddy/pki/authorities/local/root.crt ]"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    networks:
+      caddy:
+        aliases:
+          - caddy.g100.aarc3-pilots.vm.fedcloud.eu
+          - ta1.g100.aarc3-pilots.vm.fedcloud.eu
+          - ta2.g100.aarc3-pilots.vm.fedcloud.eu
+          - tmi-sirtfi.g100.aarc3-pilots.vm.fedcloud.eu
+          - rp.g100.aarc3-pilots.vm.fedcloud.eu
+          - whoami.g100.aarc3-pilots.vm.fedcloud.eu
+          - rp-expl.g100.aarc3-pilots.vm.fedcloud.eu
+  ta1:
+    image: oidfed/lighthouse:main
+    restart: unless-stopped
+    volumes:
+      - ./ta1/config.yaml:/config.yaml:ro
+      - ./ta1/data:/data
+      - ./caddy/data/caddy/pki/authorities/local/root.crt:/usr/local/share/ca-certificates/caddyRootCA.crt:ro
+    networks:
+      - caddy
+    depends_on:
+      caddy:
+        condition: service_healthy
+
+  ta2:
+    image: oidfed/lighthouse:main
+    restart: unless-stopped
+    volumes:
+      - ./ta2/config.yaml:/config.yaml:ro
+      - ./ta2/data:/data
+      - ./caddy/data/caddy/pki/authorities/local/root.crt:/usr/local/share/ca-certificates/caddyRootCA.crt:ro
+    networks:
+      - caddy
+    depends_on:
+      caddy:
+        condition: service_healthy
+  
+  tmi-sirtfi:
+    image: oidfed/lighthouse:main
+    restart: unless-stopped
+    volumes:
+      - ./tmi-sirtfi/config.yaml:/config.yaml:ro
+      - ./tmi-sirtfi/data:/data
+      - ./caddy/data/caddy/pki/authorities/local/root.crt:/usr/local/share/ca-certificates/caddyRootCA.crt:ro
+    networks:
+      - caddy
+    depends_on:
+      caddy:
+        condition: service_healthy
+
+  rp:
+    image: oidfed/offa:main
+    restart: unless-stopped
+    volumes:
+      - ./rp/config.yaml:/config.yaml:ro
+      - ./rp/data:/data
+      - ./caddy/data/caddy/pki/authorities/local/root.crt:/usr/local/share/ca-certificates/caddyRootCA.crt:ro
+    networks:
+      - caddy
+    depends_on:
+      caddy:
+        condition: service_healthy
+
+  whoami:
+    image: containous/whoami
+    restart: unless-stopped
+    volumes:
+      - ./caddy/data/caddy/pki/authorities/local/root.crt:/usr/local/share/ca-certificates/caddyRootCA.crt:ro
+    networks:
+      - caddy
+    depends_on:
+      caddy:
+        condition: service_healthy
+
+  rp-expl:
+    image: ddgu/fedservice:latest
+    restart: unless-stopped
+    volumes:
+      - ./rp-expl/rp/rp-expl:/conf
+      - ./caddy/data/caddy/pki/authorities/local/root.crt:/usr/local/share/ca-certificates/caddyRootCA.crt:ro
+    environment:
+      - ENTITY_TYPE=rp
+      - ENTITY_NAME=rp-expl
+    networks:
+      - caddy
+    depends_on:
+      caddy:
+        condition: service_healthy
+
+networks:
+  caddy:
+    external: true

@@ -1,0 +1,36 @@
+server:
+  port: 7672
+logging:
+  level: trace
+signing:
+  alg: ES256
+  key_dir: "/data/signing"
+federation_data:
+  entity_id: "https://ta1.g100.aarc3-pilots.vm.fedcloud.eu"
+  federation_entity_metadata:
+    display_name: "AARC G100 Pilot TA [G100.1]"
+    organization_name: "AARC G100 Pilot"
+storage:
+  backend: badger
+  data_dir: "/data/storage"
+endpoints:
+  fetch:
+    path: "/fetch"
+  list:
+    path: "/list"
+  resolve:
+    path: "/resolve"
+  enroll:
+    path: "/enroll"
+    checker:
+      type: multiple_and
+      config:
+        - type: authority_hints
+          config:
+            entity_id: https://ta1.g100.aarc3-pilots.vm.fedcloud.eu
+        - type: entity_id
+          config:
+            entity_ids:
+              - https://rp.g100.aarc3-pilots.vm.fedcloud.eu
+              - https://op.g100.aarc3-pilots.vm.fedcloud.eu
+              # Add additional entity IDs as needed. This ensures manual enrollment.

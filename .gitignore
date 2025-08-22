@@ -1,0 +1,6 @@
+*/data/*
+caddy/config/*
+**/private
+**/static
+**/trust_anchors
+**/authority_hints*

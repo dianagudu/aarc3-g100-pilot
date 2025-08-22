@@ -1,0 +1,33 @@
+server:
+  port: 7672
+signing:
+  alg: ES256
+  key_dir: "/data/signing"
+federation_data:
+  entity_id: "https://tmi-sirtfi.g100.aarc3-pilots.vm.fedcloud.eu"
+  federation_entity_metadata:
+    display_name: "Trust Mark Issuer for Sirtfi"
+    organization_name: "REFEDS"
+  trust_anchors:
+    - entity_id: https://ta2.g100.aarc3-pilots.vm.fedcloud.eu
+  authority_hints:
+    - https://ta2.g100.aarc3-pilots.vm.fedcloud.eu
+storage:
+  backend: badger
+  data_dir: "/data/storage"
+endpoints:
+  trust_mark:
+    path: "/trustmark"
+    trust_mark_specs:
+      - trust_mark_type: https://refeds.org/sirtfi
+        lifetime: 3600
+        ref: https://refeds.org/wp-content/uploads/2016/01/Sirtfi-1.0.pdf
+        logo_uri: https://wiki.refeds.org/download/attachments/44958353/sirtfi-logo.png
+      - trust_mark_type: https://refeds.org/sirtfi2
+        lifetime: 3600
+        ref: https://refeds.org/wp-content/uploads/2022/08/Sirtfi-v2.pdf
+        logo_uri: https://wiki.refeds.org/download/attachments/44958353/sirtfi-logo.png
+  trust_mark_list:
+    path: /trustmark/list
+  trust_mark_status:
+    path: /trustmark/status
