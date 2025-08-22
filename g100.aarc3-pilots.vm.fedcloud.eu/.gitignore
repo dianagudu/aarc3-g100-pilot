@@ -1,0 +1,10 @@
+rp/data/*
+!**/.gitkeep
+*/data/signing/*
+*/data/storage/*
+*/caddy/data/*
+*/caddy/config/*
+**/private
+**/static
+**/trust_anchors
+**/authority_hints*

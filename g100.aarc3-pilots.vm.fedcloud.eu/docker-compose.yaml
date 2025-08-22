@@ -9,23 +9,8 @@ services:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./caddy/data:/data
       - ./caddy/config:/config
-    user: ${UID}:${GID}
-    healthcheck:
-      test: ["CMD-SHELL", "[ -f /data/caddy/pki/authorities/local/root.crt ]"]
-      interval: 10s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
     networks:
-      caddy:
-        aliases:
-          - caddy.g100.aarc3-pilots.vm.fedcloud.eu
-          - ta1.g100.aarc3-pilots.vm.fedcloud.eu
-          - ta2.g100.aarc3-pilots.vm.fedcloud.eu
-          - tmi-sirtfi.g100.aarc3-pilots.vm.fedcloud.eu
-          - rp.g100.aarc3-pilots.vm.fedcloud.eu
-          - whoami.g100.aarc3-pilots.vm.fedcloud.eu
-          - rp-expl.g100.aarc3-pilots.vm.fedcloud.eu
+      - caddy
   ta1:
     image: oidfed/lighthouse:main
     restart: unless-stopped
@@ -34,9 +19,6 @@ services:
       - ./ta1/data:/data
     networks:
       - caddy
-    depends_on:
-      caddy:
-        condition: service_healthy
 
   ta2:
     image: oidfed/lighthouse:main
@@ -46,9 +28,6 @@ services:
       - ./ta2/data:/data
     networks:
       - caddy
-    depends_on:
-      caddy:
-        condition: service_healthy
   
   tmi-sirtfi:
     image: oidfed/lighthouse:main
@@ -58,9 +37,6 @@ services:
       - ./tmi-sirtfi/data:/data
     networks:
       - caddy
-    depends_on:
-      caddy:
-        condition: service_healthy
 
   rp:
     image: oidfed/offa:main
@@ -70,23 +46,17 @@ services:
       - ./rp/data:/data
     networks:
       - caddy
-    depends_on:
-      caddy:
-        condition: service_healthy
 
   whoami:
     image: containous/whoami
     restart: unless-stopped
-    volumes:
     networks:
       - caddy
-    depends_on:
-      caddy:
-        condition: service_healthy
 
   rp-expl:
     image: ddgu/fedservice:latest
     restart: unless-stopped
+    init: true
     volumes:
       - ./rp-expl/rp/rp-expl:/conf
     environment:
@@ -94,9 +64,6 @@ services:
       - ENTITY_NAME=rp-expl
     networks:
       - caddy
-    depends_on:
-      caddy:
-        condition: service_healthy
 
 networks:
   caddy:

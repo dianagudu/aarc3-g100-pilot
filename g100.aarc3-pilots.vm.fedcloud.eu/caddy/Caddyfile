@@ -1,3 +1,11 @@
+{
+	email gudu@kit.edu
+	log {
+		output stdout
+		level debug
+	}
+}
+
 ta1.g100.aarc3-pilots.vm.fedcloud.eu {
 	reverse_proxy ta1:7672
 }

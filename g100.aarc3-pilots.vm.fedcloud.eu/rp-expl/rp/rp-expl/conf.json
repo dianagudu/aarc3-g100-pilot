@@ -5,7 +5,7 @@
       "organization_name": "AARC G100 Pilot",
       "display_name": "RP Explicit registration (fedservice)",
       "organization_uri": "https://rp-expl.g100.aarc3-pilots.vm.fedcloud.eu",
-      "contacts": "operations@rp-expl.g100.aarc3-pilots.vm.fedcloud.eu"
+      "contacts": ["operations@rp-expl.g100.aarc3-pilots.vm.fedcloud.eu"]
     },
     "key_config": {
       "private_path": "private/fed_keys.json",
@@ -134,7 +134,7 @@
                 "organization_name": "RP explicit",
                 "display_name": "rp-expl",
                 "organization_uri": "https://rp-expl.g100.aarc3-pilots.vm.fedcloud.eu",
-                "contacts": "operations@rp-expl.g100.aarc3-pilots.vm.fedcloud.eu",
+                "contacts": ["operations@rp-expl.g100.aarc3-pilots.vm.fedcloud.eu"],
                 "preference": {
                   "client_registration_types": [
                     "explicit"

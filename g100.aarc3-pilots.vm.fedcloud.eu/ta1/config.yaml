@@ -1,7 +1,12 @@
 server:
   port: 7672
 logging:
-  level: trace
+  access:
+    stderr: true
+    level: trace
+  internal:
+    stderr: true
+    level: trace
 signing:
   alg: ES256
   key_dir: "/data/signing"
@@ -32,5 +37,7 @@ endpoints:
           config:
             entity_ids:
               - https://rp.g100.aarc3-pilots.vm.fedcloud.eu
+              - https://rp-expl.g100.aarc3-pilots.vm.fedcloud.eu
               - https://op.g100.aarc3-pilots.vm.fedcloud.eu
               # Add additional entity IDs as needed. This ensures manual enrollment.
+
