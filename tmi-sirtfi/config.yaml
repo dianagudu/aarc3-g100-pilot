@@ -1,5 +1,12 @@
 server:
   port: 7672
+logging:
+  access:
+    stderr: true
+    level: trace
+  internal:
+    stderr: true
+    level: trace
 signing:
   alg: ES256
   key_dir: "/data/signing"
@@ -20,13 +27,25 @@ endpoints:
     path: "/trustmark"
     trust_mark_specs:
       - trust_mark_type: https://refeds.org/sirtfi
-        lifetime: 3600
+        lifetime: 200d
         ref: https://refeds.org/wp-content/uploads/2016/01/Sirtfi-1.0.pdf
         logo_uri: https://wiki.refeds.org/download/attachments/44958353/sirtfi-logo.png
+        checker:
+          type: entity_id
+          config:
+            entity_ids:
+              - https://rp.g100.aarc3-pilots.vm.fedcloud.eu
+              - https://rp-expl.g100.aarc3-pilots.vm.fedcloud.eu
       - trust_mark_type: https://refeds.org/sirtfi2
-        lifetime: 3600
+        lifetime: 7d
         ref: https://refeds.org/wp-content/uploads/2022/08/Sirtfi-v2.pdf
         logo_uri: https://wiki.refeds.org/download/attachments/44958353/sirtfi-logo.png
+        checker:
+          type: entity_id
+          config:
+            entity_ids:
+              - https://rp.g100.aarc3-pilots.vm.fedcloud.eu
+              - https://rp-expl.g100.aarc3-pilots.vm.fedcloud.eu
   trust_mark_list:
     path: /trustmark/list
   trust_mark_status:

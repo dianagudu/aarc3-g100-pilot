@@ -46,6 +46,12 @@
         "value_conv": "idpyoidc.util.JSON"
       }
     },
+    "trust_marks": {
+      "class": "idpyoidc.storage.jsonfile.JsonReadOnlyFile",
+      "kwargs": {
+        "file_name": "trust_marks"
+      }
+    },
     "endpoints": [
       "entity_configuration"
     ],

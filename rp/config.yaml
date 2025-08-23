@@ -34,6 +34,11 @@ federation:
       refresh: true
       min_lifetime: 300
       refresh_grace_period: 7200
+    - trust_mark_type: https://refeds.org/sirtfi
+      trust_mark_issuer: https://tmi-sirtfi.g100.aarc3-pilots.vm.fedcloud.eu
+      refresh: true
+      min_lifetime: 300
+      refresh_grace_period: 7200
 
 signing:
   key_storage: /data

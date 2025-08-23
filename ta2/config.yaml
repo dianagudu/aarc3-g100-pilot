@@ -1,5 +1,12 @@
 server:
   port: 7672
+logging:
+  access:
+    stderr: true
+    level: trace
+  internal:
+    stderr: true
+    level: trace
 signing:
   alg: ES256
   key_dir: "/data/signing"
