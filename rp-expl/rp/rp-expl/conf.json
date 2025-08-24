@@ -47,7 +47,7 @@
       }
     },
     "trust_marks": {
-      "class": "idpyoidc.storage.jsonfile.JsonReadOnlyFile",
+      "class": "idpyoidc.storage.jsonfile.JsonArrayFile",
       "kwargs": {
         "file_name": "trust_marks"
       }

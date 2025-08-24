@@ -65,6 +65,18 @@ services:
     networks:
       - caddy
 
+  op:
+    image: ddgu/fedservice:latest
+    restart: unless-stopped
+    init: true
+    volumes:
+      - ./op/op/op:/conf
+    environment:
+      - ENTITY_TYPE=op
+      - ENTITY_NAME=op
+    networks:
+      - caddy
+
 networks:
   caddy:
     external: true

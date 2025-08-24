@@ -35,6 +35,7 @@ endpoints:
           config:
             entity_ids:
               - https://rp.g100.aarc3-pilots.vm.fedcloud.eu
+              - https://op.g100.aarc3-pilots.vm.fedcloud.eu
               - https://rp-expl.g100.aarc3-pilots.vm.fedcloud.eu
       - trust_mark_type: https://refeds.org/sirtfi2
         lifetime: 7d
@@ -45,6 +46,7 @@ endpoints:
           config:
             entity_ids:
               - https://rp.g100.aarc3-pilots.vm.fedcloud.eu
+              - https://op.g100.aarc3-pilots.vm.fedcloud.eu
               - https://rp-expl.g100.aarc3-pilots.vm.fedcloud.eu
   trust_mark_list:
     path: /trustmark/list

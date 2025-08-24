@@ -51,15 +51,4 @@ endpoints:
                   - https://rp.g100.aarc3-pilots.vm.fedcloud.eu
                   - https://op.g100.aarc3-pilots.vm.fedcloud.eu
                   - https://rp-expl.g100.aarc3-pilots.vm.fedcloud.eu
-            - type: multiple_or
-              config:
-              - type: trust_mark
-                config:
-                  trust_mark_type: https://refeds.org/sirtfi
-                  trust_anchors:
-                    - entity_id: https://ta2.g100.aarc3-pilots.vm.fedcloud.eu
-              - type: trust_mark
-                config:
-                  trust_mark_type: https://refeds.org/sirtfi2
-                  trust_anchors:
-                    - entity_id: https://ta2.g100.aarc3-pilots.vm.fedcloud.eu
+
