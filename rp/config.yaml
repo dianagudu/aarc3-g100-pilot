@@ -13,8 +13,6 @@ sessions:
 
 auth:
   - domain: whoami.g100.aarc3-pilots.vm.fedcloud.eu
-    require:
-      groups: users
 
 federation:
   entity_id: https://rp.g100.aarc3-pilots.vm.fedcloud.eu

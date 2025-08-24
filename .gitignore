@@ -6,6 +6,6 @@ caddy/config/*
 **/private
 **/static
 **/trust_anchors
-**/trust_marks
+**/trust_marks*
 **/authority_hints*
 !**/.gitkeep
