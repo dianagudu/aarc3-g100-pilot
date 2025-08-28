@@ -72,7 +72,7 @@ Requirements:
 Steps:
 
 - Make sure your proxy satisfies the requirements above
-- Send us an email requesting to participate in the pilot to [email](mailto:). The email should contain:
+- Send us an email requesting to participate in the pilot to [contact-aarc-g100-pilot@lists.geant.org](mailto:contact-aarc-g100-pilot@lists.geant.org). The email should contain:
   - Your Proxy's entity id
   - which trust model you want to participate in (G100.1 or G100.2)
 - Test the following scenarios, depending on the trust model you chose and the client registration methods supported by your proxy
